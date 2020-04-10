@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'register.css') }}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>  
+<body>
+	<div id = "header">
+		<ul>
+			<ul>
+				<li><a href="/enter"> Enter Student Record</a></li>
+				<li><a href="/payfees">Pay Mess Fee</a></li>
+				<li><a href="/paydue">Pay Due</a></li>
+				<li><a href="/transaction">Transactions</a></li>
+				<li><a href="/students">Student Records</a></li>
+			</ul>
+		</ul>
+	</div>
+	<div id="leftBar">
+		<h1>
+			
+			Swami<br>	
+			vivekanand Hostel<br>
+			Mess<br>
+			Management
+
+		</h1>
+	</div>
+	<div id="rightBar" align="center">
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<script>
+				swal("{{ message }}", "Thank you!", "success");
+			</script>
+		
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+		<h1>Enter Student Details</h1>
+		<form action="/savedata" method="POST">
+			<input type="text" name="FullName" placeholder="Enter student's Name" required><br>
+			<input type="digit" name="Room" placeholder="Enter student's Room Number" required><br>
+			<input type="digit" name="Phone" placeholder="Enter student's Phone Number" required><br>
+			<input type="text" name="Year" placeholder="Enter student's current year" required><br>
+			<select name="Course_id" id="" required>
+				{% for key, value in course.items() %}
+					<option value="{{key}}">{{value}}</option><br>
+				{% endfor %}	
+			</select>
+			<button>Save Data</button>
+		</form>
+	</div>
+	<!-- Removing float here -->
+	<div class="clearfix"></div>
+</body>
+</html>

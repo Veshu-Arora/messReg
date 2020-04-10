@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+		ul li{
+			list-style: none;
+			font-size: 30px;
+			border: 10px groove gray;
+			margin: 5px 0 5px 0;
+		}
+	</style>
+</head>
+<body>
+    <center><h1>MESSAGE</h1>
+    <ul>
+        {% for g in guest %}
+            {% for h in hostel %}
+                {% if g.contact_std == h.phoneno %}
+                    <li>{{ g.guest_name }} came here to visit {{ h.full_name }} at {{ g.arrival_time }} and left at
+                    {{g.leaving_time}}<a href="{{ url_for('updatetime', guest_id=g.id)}}">Check</a> </li>
+                {% endif %}    
+            {% endfor %}
+        {% endfor %}        
+    </ul>
+    </center>
+</body>
+</html>

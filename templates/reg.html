@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'register.css') }}">
+</head>  
+<body>
+	<div id = "header">
+		<ul>
+			<li><a  href="/register">Register</a></li>
+			<li><a href="/guest">Guest</a></li>
+			<li><a href="/visitors">Visitors</a></li>
+		</ul>
+	</div>
+	<div id="leftBar">
+		<h1>
+			Welcome<br>
+			To Swami		
+			vivekanand Hostel<br>
+
+		</h1>
+	</div>
+	<div id="rightBar" align="center">
+		<h1>Create an account</h1>
+		<form action="" method="POST">
+			<select name="vehicle_cost" id="">
+				{% for key, value in vehicle.items() %}
+					<option value="{{key}}">{{value}}</option>
+				{% endfor %}	
+			</select>
+			<button>Register</button>
+
+		</form>
+	</div>
+	<!-- Removing float here -->
+	<div class="clearfix"></div>
+</body>
+</html>

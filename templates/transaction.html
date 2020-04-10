@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'register.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id = "header">
+		<ul>
+			<li><a href="/enter">Enter Student Record</a></li>
+			<li><a href="/payfees">Pay Mess Fee</a></li>
+			<li><a href="/paydue">Pay Due</a></li>
+			<li><a href="/transaction">Transactions</a></li>
+			<li><a href="/students">Student Records</a></li>
+		</ul>
+	</div>
+
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #333;
+            color: white;
+        }
+
+        h1{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+    <center>
+        <h1>These are the  Mess Fee records of students</h1>
+        <table id="customers">
+            <tr>
+                <th>ID</th>
+                <th>Phone No</th>
+                <th>Full Name</th>
+                <th>Room No</th>
+                <th>Payment Date</th>
+                <th>payment Time</th>
+                <th>Month</th>
+                <th>Fees</th>
+                <th>Due</th>
+                
+            </tr>
+            {% if result %}
+            {% for item in result %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.student_phone }}</td>
+                <td>{{ item.student_name }}</td>
+                <td>{{ item.room }}</td>
+                <td>{{ item.paying_date }}</td>
+                <td>{{ item.paying_time }}</td>
+                <td>{{ item.month }}</td>
+                <td>{{ item.fees_paid }}</td>
+                <td>{{ item.fees_due }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            No results found
+            {% endif %}
+        </table>
+    </center>
+</body>
+
+</html>

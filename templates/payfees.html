@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'register.css') }}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+	<div id = "header">
+		<ul>
+			<li><a href="/enter">Enter Student Record</a></li>
+			<li><a href="/payfees">Pay Mess Fee</a></li>
+			<li><a href="/paydue">Pay Due</a></li>
+			<li><a href="/transaction">Transactions</a></li>
+			<li><a href="/students">Student Records</a></li>
+		</ul>
+	</div>
+	<div id="leftBar">
+		<h1>
+			Mess<br>
+			Fee<br>		
+			Payment<br>
+
+		</h1>
+	</div>
+	<div id="rightBar" align="center">
+
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<script>
+				swal("{{ message }}", "Thank you!", "success");
+			</script>
+		
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+
+		<h1>Enter the credentials</h1>
+		<form action="/feesrecord" method="POST">
+			<input type="digit" name="Phone" placeholder="Enter Student Phone Number" required><br>
+			<input type="digit" name="Fees" placeholder="Enter Fees Amount" required><br>
+			<select name="month_id" id="" required>
+				{% for key, value in month.items() %}
+					<option value="{{key}}">{{value}}</option><br>
+				{% endfor %}	
+			</select>
+			<button>Save Fee Record</button>
+		</form>
+	</div>
+	<!-- Removing float here -->
+	<div class="clearfix"></div>
+</body>
+</html>
